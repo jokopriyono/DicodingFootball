@@ -3,8 +3,8 @@ package com.jokopriyono.dicodingfootball
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private var items: MutableList<Item> = mutableListOf()
@@ -13,11 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val list = findViewById<RecyclerView>(R.id.recycler)
         initData()
 
-        list.layoutManager = LinearLayoutManager(this)
-        list.adapter = FootballAdapter(this, items){
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = FootballAdapter(this, items){
             val toast = Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
             toast.show()
         }

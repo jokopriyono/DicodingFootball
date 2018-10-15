@@ -5,9 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_football.view.*
 
 class FootballAdapter(private val context: Context, private val items: List<Item>, private val listener: (Item) -> Unit):
         RecyclerView.Adapter<FootballAdapter.ViewHolder>() {
@@ -21,11 +20,9 @@ class FootballAdapter(private val context: Context, private val items: List<Item
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        private val name = view.findViewById<TextView>(R.id.name)
-        private val image = view.findViewById<ImageView>(R.id.image)
         fun bindItem(item: Item, listener: (Item) -> Unit){
-            name.text = item.name
-            item.image?.let { Picasso.get().load(it).into(image) }
+            itemView.name.text = item.name
+            item.image?.let { Picasso.get().load(it).into(itemView.image) }
             itemView.setOnClickListener { listener(item) }
         }
     }
