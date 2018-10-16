@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_football.view.*
+import org.jetbrains.anko.startActivity
 
-class FootballAdapter(private val context: Context, private val items: List<Item>, private val listener: (Item) -> Unit):
+class FootballAdapter(val context: Context, private val items: List<Item>, private val listener: (Item) -> Unit):
         RecyclerView.Adapter<FootballAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(items[position], listener)
+        holder.bindItem(items[position], context)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -20,10 +21,12 @@ class FootballAdapter(private val context: Context, private val items: List<Item
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        fun bindItem(item: Item, listener: (Item) -> Unit){
-            itemView.name.text = item.name
-            item.image?.let { Picasso.get().load(it).into(itemView.image) }
-            itemView.setOnClickListener { listener(item) }
+        fun bindItem(item: Item, context: Context){
+            itemView.txt_name.text = item.name
+            item.image?.let { Picasso.get().load(it).into(itemView.img_image) }
+            itemView.cardview.setOnClickListener {
+                view: View? -> context.startActivity<DetailActivity>("nama" to item.name, "image" to item.image, "desc" to item.desc)
+            }
         }
     }
 }
