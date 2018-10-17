@@ -11,14 +11,17 @@
         <item>Spanish La Liga</item>
     </array>
     <string-array name="club_name">
-        <item>Barcelona FC</item>
-        <item>Real Madrid FC</item>
-        <item>Bayern Munchen FC</item>
-        <item>Manchester City FC</item>
-        <item>Manchester United FC</item>
-        <item>Chelsea FC</item>
-        <item>AC Milan FC</item>
-        <item>Arsenal FC</item>
+        <item>Barcelona</item>
+        <item>Real Madrid</item>
+        <item>Bayern Munchen</item>
+        <item>Manchester City</item>
+        <item>Manchester United</item>
+        <item>Chelsea</item>
+        <item>AC Milan</item>
+        <item>Arsenal</item>
+    </string-array>
+    <string-array name="spinner">
+        <item>German Bundesliga</item>
     </string-array>
     <string-array name="club_desc">
         <item>Known simply as Barcelona and colloquially as Barça, is a professional football club based in Barcelona, Catalonia, Spain.</item>
