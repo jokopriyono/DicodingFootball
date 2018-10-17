@@ -4,7 +4,7 @@ import com.jokopriyono.dicodingfootball.api.response.AllLeague
 import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import com.jokopriyono.dicodingfootball.api.response.Team
 
-interface MainView{
+interface MainView {
     fun showLoading()
     fun hideLoading()
     fun showTeams(data: List<Team>)

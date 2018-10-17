@@ -1,6 +1,6 @@
 package com.jokopriyono.dicodingfootball.feature.detail
 
-interface DetailView{
+interface DetailView {
     fun showLoading()
     fun hideLoading()
 }

@@ -3,8 +3,8 @@ package com.jokopriyono.dicodingfootball.api
 import android.net.Uri
 import com.jokopriyono.dicodingfootball.BuildConfig
 
-object TheSportDBApi{
-    fun getTeams(league: String?): String{
+object TheSportDBApi {
+    fun getTeams(league: String?): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
                 .appendPath("api")
                 .appendPath("v1")
@@ -16,7 +16,7 @@ object TheSportDBApi{
                 .toString()
     }
 
-    fun getAllLeague(): String{
+    fun getAllLeague(): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
                 .appendPath("api")
                 .appendPath("v1")
@@ -27,7 +27,7 @@ object TheSportDBApi{
                 .toString()
     }
 
-    fun getLastLeague(idLeague: String?): String{
+    fun getLastLeague(idLeague: String?): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
                 .appendPath("api")
                 .appendPath("v1")

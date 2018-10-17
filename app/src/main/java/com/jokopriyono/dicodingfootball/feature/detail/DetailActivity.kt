@@ -13,6 +13,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
 //        val data: AllLeague = intent.getParcelableExtra("data")
         DetailActivityUI("", "").setContentView(this)
     }
+
     override fun showLoading() {
 
     }
@@ -21,10 +22,10 @@ class DetailActivity : AppCompatActivity(), DetailView {
 
     }
 
-    class DetailActivityUI(private val nama: String?, private val desc: String?):
-            AnkoComponent<DetailActivity>{
-        override fun createView(ui: AnkoContext<DetailActivity>) = with(ui){
-            verticalLayout{
+    class DetailActivityUI(private val nama: String?, private val desc: String?) :
+            AnkoComponent<DetailActivity> {
+        override fun createView(ui: AnkoContext<DetailActivity>) = with(ui) {
+            verticalLayout {
                 padding = dip(16)
                 /*this.lparams(width = matchParent, height = matchParent){
                     gravity = Gravity.CENTER

@@ -10,8 +10,8 @@ import com.jokopriyono.dicodingfootball.api.model.LastLeagueResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainPresenter(val view: MainView, private val repo: ApiRepository, private val gson: Gson){
-    fun getTeams(league: String?){
+class MainPresenter(val view: MainView, private val repo: ApiRepository, private val gson: Gson) {
+    fun getTeams(league: String?) {
         view.showLoading()
         doAsync {
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getTeams(league)), TeamResponse::class.java)
@@ -19,7 +19,7 @@ class MainPresenter(val view: MainView, private val repo: ApiRepository, private
         }
     }
 
-    fun getAllLeague(){
+    fun getAllLeague() {
         view.showLoading()
         doAsync {
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getAllLeague()), AllLeagueResponse::class.java)
