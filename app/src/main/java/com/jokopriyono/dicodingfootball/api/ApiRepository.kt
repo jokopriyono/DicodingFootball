@@ -1,4 +1,4 @@
-package com.jokopriyono.dicodingfootball
+package com.jokopriyono.dicodingfootball.api
 
 import java.net.URL
 

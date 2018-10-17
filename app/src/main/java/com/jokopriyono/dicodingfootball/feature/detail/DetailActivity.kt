@@ -1,12 +1,13 @@
-package com.jokopriyono.dicodingfootball
+package com.jokopriyono.dicodingfootball.feature.detail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import com.jokopriyono.dicodingfootball.Item
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), DetailView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +16,13 @@ class DetailActivity : AppCompatActivity() {
         val image: Int? = data.image
         val desc: String? = data.desc
         DetailActivityUI(nama, image, desc).setContentView(this)
+    }
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
     }
 
     class DetailActivityUI(private val nama: String?, private val resImage: Int?, private val desc: String?):
