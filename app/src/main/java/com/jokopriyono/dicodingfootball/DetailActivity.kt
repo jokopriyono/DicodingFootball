@@ -10,13 +10,14 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intentNama: String = intent.getStringExtra("nama")
-        val intentImage: Int = intent.getIntExtra("image", 0)
-        val intentDesc: String = intent.getStringExtra("desc")
-        DetailActivityUI(intentNama, intentImage, intentDesc).setContentView(this)
+        val data: Item = intent.getParcelableExtra<Item>("data")
+        val nama: String? = data.name
+        val image: Int? = data.image
+        val desc: String? = data.desc
+        DetailActivityUI(nama, image, desc).setContentView(this)
     }
 
-    class DetailActivityUI(private val nama: String, private val resImage: Int, private val desc: String):
+    class DetailActivityUI(private val nama: String?, private val resImage: Int?, private val desc: String?):
             AnkoComponent<DetailActivity>{
         override fun createView(ui: AnkoContext<DetailActivity>) = with(ui){
             verticalLayout{
@@ -26,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
                     padding = dip(16)
                 }*/
                 imageView{
-                    Picasso.get().load(resImage).into(this)
+                    resImage?.let { Picasso.get().load(resImage).into(this) }
                 }.lparams(width = matchParent, height = dip(150))
 
                 textView(nama){

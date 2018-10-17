@@ -25,7 +25,7 @@ class FootballAdapter(val context: Context, private val items: List<Item>, priva
             itemView.txt_name.text = item.name
             item.image?.let { Picasso.get().load(it).into(itemView.img_image) }
             itemView.cardview.setOnClickListener {
-                view: View? -> context.startActivity<DetailActivity>("nama" to item.name, "image" to item.image, "desc" to item.desc)
+                view: View? -> context.startActivity<DetailActivity>("data" to item)
             }
         }
     }
