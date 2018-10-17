@@ -7,7 +7,7 @@ import com.jokopriyono.dicodingfootball.api.model.TeamResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class DetailPresenter(val view: DetailView, private val repo: ApiRepository, private val gson: Gson){
+class DetailPresenter(val view: DetailView, private val repo: ApiRepository, private val gson: Gson) {
     fun getTwoTeams(team1: String?, team2: String?) {
         view.showLoading()
         doAsync {

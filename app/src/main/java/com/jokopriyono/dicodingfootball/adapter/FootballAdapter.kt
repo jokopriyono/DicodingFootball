@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-class FootballAdapter(val context: Context, private val teams: List<Team>):
+class FootballAdapter(val context: Context, private val teams: List<Team>) :
         RecyclerView.Adapter<FootballHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootballHolder {
         return FootballHolder(FootballUI().createView(AnkoContext.create(parent.context, parent)))
@@ -26,7 +26,7 @@ class FootballAdapter(val context: Context, private val teams: List<Team>):
     override fun getItemCount(): Int = teams.size
 }
 
-class FootballHolder(view: View) : RecyclerView.ViewHolder(view){
+class FootballHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val teamBadge: ImageView = view.find(R.id.team_badge)
     private val teamName: TextView = view.find(R.id.team_name)
 
@@ -37,11 +37,11 @@ class FootballHolder(view: View) : RecyclerView.ViewHolder(view){
 
 }
 
-class FootballUI : AnkoComponent<ViewGroup>{
+class FootballUI : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
-        return with(ui){
+        return with(ui) {
             cardView {
-                lparams(width = matchParent, height = wrapContent){
+                lparams(width = matchParent, height = wrapContent) {
                     margin = dip(8)
                 }
                 radius = 6f
@@ -52,7 +52,7 @@ class FootballUI : AnkoComponent<ViewGroup>{
 
                     imageView {
                         id = R.id.team_badge
-                    }.lparams{
+                    }.lparams {
                         height = dip(50)
                         width = dip(50)
                     }
@@ -60,7 +60,7 @@ class FootballUI : AnkoComponent<ViewGroup>{
                     textView {
                         id = R.id.team_name
                         textSize = 16f
-                    }.lparams{ margin = dip(16) }
+                    }.lparams { margin = dip(16) }
                 }
             }
 

@@ -1,6 +1,5 @@
 package com.jokopriyono.dicodingfootball.feature.main
 
-import android.util.Log
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.TheSportDBApi
@@ -25,7 +24,6 @@ class MainPresenter(val view: MainView, private val repo: ApiRepository, private
     fun getLastLeague(idLeague: Int) {
         view.showLoading()
         doAsync {
-            Log.d("pesan2", ""+TheSportDBApi.getLastLeague(idLeague.toString()))
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getLastLeague(idLeague.toString())), LastLeagueResponse::class.java)
             uiThread {
                 view.hideLoading()
@@ -37,7 +35,6 @@ class MainPresenter(val view: MainView, private val repo: ApiRepository, private
     fun getNextLeague(idLeague: Int) {
         view.showLoading()
         doAsync {
-            Log.d("pesan", ""+TheSportDBApi.getNextLeague(idLeague.toString()))
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getNextLeague(idLeague.toString())), LastLeagueResponse::class.java)
             uiThread {
                 view.hideLoading()
