@@ -2,7 +2,7 @@ package com.jokopriyono.dicodingfootball.feature.detail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
+import com.jokopriyono.dicodingfootball.api.response.AllLeague
 import com.jokopriyono.dicodingfootball.api.response.Team
 import org.jetbrains.anko.*
 
@@ -10,10 +10,8 @@ class DetailActivity : AppCompatActivity(), DetailView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val data: Team = intent.getParcelableExtra("data")
-        val nama: String? = data.teamName
-        val desc: String? = data.teamBadge
-        DetailActivityUI(nama, desc).setContentView(this)
+//        val data: AllLeague = intent.getParcelableExtra("data")
+        DetailActivityUI("", "").setContentView(this)
     }
     override fun showLoading() {
 
@@ -34,7 +32,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
                 }
                 imageView{
                     resImage?.let { Picasso.get().load(resImage).into(this) }
-                }.lparams(width = matchParent, height = dip(150))*/
+                }.lparams(width = matchParent, height = dip(150))
 
                 textView(nama){
                     this.gravity = Gravity.CENTER
@@ -48,7 +46,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
                     textSize = 11f
                 }.lparams(width = matchParent){
                     gravity = Gravity.CENTER
-                }
+                }*/
             }
         }
 

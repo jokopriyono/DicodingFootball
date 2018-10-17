@@ -45,7 +45,7 @@ class FootballUI : AnkoComponent<ViewGroup>{
                     margin = dip(8)
                 }
                 radius = 6f
-                linearLayout(){
+                linearLayout {
                     lparams(width = matchParent, height = wrapContent)
                     padding = dip(16)
                     orientation = LinearLayout.HORIZONTAL

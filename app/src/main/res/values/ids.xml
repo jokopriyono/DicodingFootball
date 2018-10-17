@@ -3,4 +3,10 @@
     <item name="team_badge" type="id" />
     <item name="team_name" type="id" />
     <item name="away_name" type="id" />
+    <item name="txt_league_date" type="id" />
+    <item name="txt_away_name" type="id" />
+    <item name="txt_away_score" type="id" />
+    <item name="txt_home_score" type="id" />
+    <item name="txt_home_name" type="id" />
+    <item name="card_last_league" type="id" />
 </resources>

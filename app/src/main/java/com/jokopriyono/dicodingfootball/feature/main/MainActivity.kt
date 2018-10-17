@@ -1,23 +1,22 @@
 package com.jokopriyono.dicodingfootball.feature.main
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.google.gson.Gson
-import com.jokopriyono.dicodingfootball.adapter.FootballAdapter
 import com.jokopriyono.dicodingfootball.R
+import com.jokopriyono.dicodingfootball.adapter.FootballAdapter
 import com.jokopriyono.dicodingfootball.adapter.LastLeagueAdapter
 import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.response.AllLeague
 import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import com.jokopriyono.dicodingfootball.api.response.Team
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.toast
 
-class MainActivity : AppCompatActivity(), MainView{
+class MainActivity : AppCompatActivity(), MainView {
     private lateinit var lastLeague: LastLeagueAdapter
 
     override fun showLastLeague(events: List<LastLeague>) {
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity(), MainView{
 
         recycler.layoutManager = LinearLayoutManager(this)
         spinner_league.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?){ }
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
                 presenter.getLastTeam(idLeagues.get(spinner_league.selectedItemPosition))
