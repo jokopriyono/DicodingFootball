@@ -4,6 +4,7 @@
     <string name="teams">Teams</string>
     <string name="next_match">Next Match</string>
     <string name="last_match">Last Match</string>
+    <string name="vs">VS</string>
     <array name="league">
         <item>English Premier League</item>
         <item>English League Championship</item>

@@ -10,5 +10,11 @@ data class AllLeague(
         val idLeague: String,
 
         @SerializedName("strLeague")
-        val leagueName: String
+        val leagueName: String,
+
+        @SerializedName("strSport")
+        val sportName: String,
+
+        @SerializedName("strLeagueAlternate")
+        val leagueAlternate: String
 ) : Parcelable

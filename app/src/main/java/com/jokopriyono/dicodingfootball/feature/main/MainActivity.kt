@@ -29,8 +29,10 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun showSpinner(allLeague: List<AllLeague>) {
         val spinnerItems = ArrayList<String>()
         for (i: AllLeague in allLeague) {
-            spinnerItems.add(i.leagueName)
-            idLeagues.add(i.idLeague.toInt())
+            if (i.sportName.equals("Soccer")) {
+                spinnerItems.add(i.leagueName)
+                idLeagues.add(i.idLeague.toInt())
+            }
         }
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         spinner_league.adapter = spinnerAdapter
