@@ -22,6 +22,8 @@ class DetailActivity : AppCompatActivity(), DetailView {
         txt_league_date.text = data.dateEvent
         txt_home_name.text = data.homeTeamName
         txt_away_name.text = data.awayTeamName
+        txt_home_score.text = data.homeScore
+        txt_away_score.text = data.awayScore
         txt_yellow_card_home.text = data.homeYellowCards?.replace(";", "\n")
         txt_red_card_home.text = data.homeRedCards?.replace(";", "\n")
         txt_yellow_card_away.text = data.awayYellowCards?.replace(";", "\n")
