@@ -90,6 +90,121 @@
                         android:contentDescription="@string/app_name" />
                 </LinearLayout>
             </LinearLayout>
+            <View
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:padding="6dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_yellow_card_home"
+                    android:drawableStart="@drawable/v_yellow_card"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/txt_yellow_card_away"
+                    android:drawableStart="@drawable/v_yellow_card"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="6dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_red_card_home"
+                    android:drawableStart="@drawable/v_red_card"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/txt_red_card_away"
+                    android:drawableStart="@drawable/v_red_card"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="6dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_home_goal"
+                    android:drawableStart="@drawable/v_goal"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/txt_away_goal"
+                    android:drawableStart="@drawable/v_goal"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="6dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_home_id"
+                    android:drawableStart="@drawable/v_id"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/txt_away_id"
+                    android:drawableStart="@drawable/v_id"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/small_text_10"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
