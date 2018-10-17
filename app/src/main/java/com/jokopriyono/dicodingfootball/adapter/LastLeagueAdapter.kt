@@ -1,8 +1,8 @@
 package com.jokopriyono.dicodingfootball.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
@@ -65,7 +65,7 @@ class LastLeagueUI : AnkoComponent<ViewGroup> {
 
                     textView {
                         id = R.id.txt_league_date
-                        textColor = Color.GRAY
+                        textColor = ContextCompat.getColor(context, R.color.colorAccent)
                         textSize = 11f
                         gravity = Gravity.CENTER_HORIZONTAL
                     }.lparams(width = matchParent, height = wrapContent)
@@ -77,6 +77,7 @@ class LastLeagueUI : AnkoComponent<ViewGroup> {
                             gravity = Gravity.CENTER
                             textView {
                                 id = R.id.txt_home_name
+                                textColor = ContextCompat.getColor(context, R.color.orangeSoft)
                             }.lparams(width = wrapContent, height = wrapContent)
                             textView {
                                 id = R.id.txt_home_score
@@ -91,6 +92,7 @@ class LastLeagueUI : AnkoComponent<ViewGroup> {
                             gravity = Gravity.CENTER
                             textView {
                                 id = R.id.txt_away_name
+                                textColor = ContextCompat.getColor(context, R.color.orangeSoft)
                             }.lparams(width = wrapContent, height = wrapContent)
                             textView {
                                 id = R.id.txt_away_score

@@ -22,11 +22,23 @@ class MainPresenter(val view: MainView, private val repo: ApiRepository, private
         }
     }
 
-    fun getLastTeam(idLeague: Int) {
+    fun getLastLeague(idLeague: Int) {
         view.showLoading()
         doAsync {
-            Log.d("pesan", TheSportDBApi.getLastLeague(idLeague.toString()))
+            Log.d("pesan2", ""+TheSportDBApi.getLastLeague(idLeague.toString()))
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getLastLeague(idLeague.toString())), LastLeagueResponse::class.java)
+            uiThread {
+                view.hideLoading()
+                view.showLastLeague(data.events)
+            }
+        }
+    }
+
+    fun getNextLeague(idLeague: Int) {
+        view.showLoading()
+        doAsync {
+            Log.d("pesan", ""+TheSportDBApi.getNextLeague(idLeague.toString()))
+            val data = gson.fromJson(repo.doRequest(TheSportDBApi.getNextLeague(idLeague.toString())), LastLeagueResponse::class.java)
             uiThread {
                 view.hideLoading()
                 view.showLastLeague(data.events)

@@ -4,13 +4,13 @@
     <item
         android:id="@+id/menu_last"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/v_last_schedule"
         android:title="@string/last_match"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_next"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/v_next_schedule"
         android:title="@string/next_match"
         app:showAsAction="ifRoom" />
 </menu>

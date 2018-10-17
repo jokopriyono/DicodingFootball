@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_detail"
-            app:navigationIcon="@mipmap/ic_launcher"
+            app:navigationIcon="@drawable/v_left"
             android:background="@color/colorPrimary"
             app:title="@string/app_name"
             app:titleTextColor="@color/white"

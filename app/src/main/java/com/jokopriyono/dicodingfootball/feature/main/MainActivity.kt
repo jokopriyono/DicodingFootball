@@ -1,6 +1,7 @@
 package com.jokopriyono.dicodingfootball.feature.main
 
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -18,26 +19,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
     private lateinit var lastLeague: LastLeagueAdapter
-
-    override fun showLastLeague(events: List<LastLeague>) {
-        lastLeague = LastLeagueAdapter(this, events)
-        recycler.adapter = lastLeague
-    }
-
+    private var position: Int = 0
     private var idLeagues: MutableList<Int> = mutableListOf()
-
-    override fun showSpinner(allLeague: List<AllLeague>) {
-        val spinnerItems = ArrayList<String>()
-        for (i: AllLeague in allLeague) {
-            if (i.sportName.equals("Soccer")) {
-                spinnerItems.add(i.leagueName)
-                idLeagues.add(i.idLeague.toInt())
-            }
-        }
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
-        spinner_league.adapter = spinnerAdapter
-    }
-
     private var teams: MutableList<Team> = mutableListOf()
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: FootballAdapter
@@ -46,29 +29,65 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        position = 0
         val request = ApiRepository()
         val gson = Gson()
         presenter = MainPresenter(this, request, gson)
         presenter.getAllLeague()
-        /*
-        spinner_league.adapter = spinnerAdapter
-
-        adapter = FootballAdapter(this, teams)
-        recycler.adapter = adapter
-
-
-        swipeRefresh.onRefresh {
-            presenter.getTeams(spinner.selectedItem.toString())
-        }*/
 
         recycler.layoutManager = LinearLayoutManager(this)
         spinner_league.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                presenter.getLastTeam(idLeagues.get(spinner_league.selectedItemPosition))
+            override fun onItemSelected(parent: AdapterView<*>?, view: View, pos: Int, id: Long) {
+                if (position == 0)
+                    presenter.getLastLeague(idLeagues[spinner_league.selectedItemPosition])
+                else
+                    presenter.getNextLeague(idLeagues[spinner_league.selectedItemPosition])
             }
         }
+        bottom_navigation.setOnNavigationItemSelectedListener(listener)
+    }
+
+    private val listener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.menu_last -> {
+                if (position != 0) {
+                    recycler.adapter = null
+                    spinner_league.adapter = null
+                    presenter.getAllLeague()
+                }
+                position = 0
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_next -> {
+                if (position != 1) {
+                    recycler.adapter = null
+                    spinner_league.adapter = null
+                    presenter.getAllLeague()
+                }
+                position = 1
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
+    override fun showLastLeague(events: List<LastLeague>) {
+        lastLeague = LastLeagueAdapter(this, events)
+        recycler.adapter = lastLeague
+    }
+
+    override fun showSpinner(allLeague: List<AllLeague>) {
+        val spinnerItems = ArrayList<String>()
+        for (i: AllLeague in allLeague) {
+            if (i.sportName == "Soccer") {
+                spinnerItems.add(i.leagueName)
+                idLeagues.add(i.idLeague.toInt())
+            }
+        }
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
+        spinner_league.adapter = spinnerAdapter
     }
 
     override fun showLoading() {
@@ -80,7 +99,6 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showTeams(data: List<Team>) {
-//        swipeRefresh.isRefreshing = false
         teams.clear()
         teams.addAll(data)
         adapter.notifyDataSetChanged()

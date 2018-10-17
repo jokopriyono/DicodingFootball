@@ -30,6 +30,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
         txt_away_goal.text = data.awayGoalDetails?.replace(";", "\n")
         txt_home_id.text = data.idHomeTeam
         txt_away_id.text = data.idAwayTeam
+        toolbar_detail.title = data.leagueName
 
         val request = ApiRepository()
         val gson = Gson()
