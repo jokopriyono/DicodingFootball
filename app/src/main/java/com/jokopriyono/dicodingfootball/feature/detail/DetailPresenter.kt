@@ -2,7 +2,7 @@ package com.jokopriyono.dicodingfootball.feature.detail
 
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.api.ApiRepository
-import com.jokopriyono.dicodingfootball.TeamResponse
+import com.jokopriyono.dicodingfootball.api.model.TeamResponse
 import com.jokopriyono.dicodingfootball.api.TheSportDBApi
 import org.jetbrains.anko.doAsync
 

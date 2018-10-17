@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.jokopriyono.dicodingfootball.R
-import com.jokopriyono.dicodingfootball.Team
+import com.jokopriyono.dicodingfootball.api.response.Team
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView

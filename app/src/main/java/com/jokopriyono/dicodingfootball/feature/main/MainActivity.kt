@@ -3,12 +3,30 @@ package com.jokopriyono.dicodingfootball.feature.main
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.adapter.FootballAdapter
 import com.jokopriyono.dicodingfootball.R
-import com.jokopriyono.dicodingfootball.Team
+import com.jokopriyono.dicodingfootball.api.ApiRepository
+import com.jokopriyono.dicodingfootball.api.response.AllLeague
+import com.jokopriyono.dicodingfootball.api.response.Team
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), MainView{
+    private var idLeagues: MutableList<Int> = mutableListOf()
+
+    override fun showSpinner(allLeague: List<AllLeague>) {
+        val spinnerItems = ArrayList<String>()
+        for (i: AllLeague in allLeague) {
+            spinnerItems.add(i.leagueName)
+            idLeagues.add(i.idLeague.toInt())
+        }
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
+        spinner_league.adapter = spinnerAdapter
+    }
+
     private var teams: MutableList<Team> = mutableListOf()
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: FootballAdapter
@@ -17,28 +35,29 @@ class MainActivity : AppCompatActivity(), MainView{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*val spinnerItems = resources.getStringArray(R.array.spinner)
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = MainPresenter(this, request, gson)
+        presenter.getAllLeague()
+        /*
         spinner_league.adapter = spinnerAdapter
 
         adapter = FootballAdapter(this, teams)
         recycler.adapter = adapter
 
-        val request = ApiRepository()
-        val gson = Gson()
-        presenter = MainPresenter(this, request, gson)
+
+        swipeRefresh.onRefresh {
+            presenter.getTeams(spinner.selectedItem.toString())
+        }*/
 
         spinner_league.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?){ }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                presenter.getTeams(spinner_league.selectedItem.toString())
+//                presenter.getTeams(spinner_league.selectedItem.toString())
+                toast(""+idLeagues.get(spinner_league.selectedItemPosition))
             }
         }
-
-        swipeRefresh.onRefresh {
-            presenter.getTeams(spinner.selectedItem.toString())
-        }*/
     }
 
     override fun showLoading() {
