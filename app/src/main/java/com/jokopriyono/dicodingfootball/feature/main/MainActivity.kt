@@ -15,7 +15,9 @@ import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.response.AllLeague
 import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import com.jokopriyono.dicodingfootball.api.response.Team
+import com.jokopriyono.dicodingfootball.feature.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity(), MainView {
     private lateinit var lastLeague: LastLeagueAdapter
@@ -65,6 +67,13 @@ class MainActivity : AppCompatActivity(), MainView {
                     recycler.adapter = null
                     spinner_league.adapter = null
                     presenter.getAllLeague()
+                }
+                position = 1
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_fav -> {
+                if (position != 2) {
+                    startActivity<DetailActivity>()
                 }
                 position = 1
                 return@OnNavigationItemSelectedListener true

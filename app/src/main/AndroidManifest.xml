@@ -4,7 +4,7 @@
     package="com.jokopriyono.dicodingfootball">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".feature.main.MainActivity"
+        <activity
+            android:name=".feature.main.MainActivity"
             android:theme="@style/AppThemeActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.detail.DetailActivity"/>
+        <activity android:name=".feature.detail.DetailActivity" />
+        <activity android:name=".feature.favorite.FavoriteActivity"></activity>
     </application>
 
 </manifest>
