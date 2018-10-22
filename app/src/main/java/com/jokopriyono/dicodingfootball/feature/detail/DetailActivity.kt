@@ -12,12 +12,15 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity(), DetailView {
+    companion object {
+        val INTENT_DATA: String = "data"
+    }
     private lateinit var presenter: DetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        val data: LastLeague = intent.getParcelableExtra("data")
+        val data: LastLeague = intent.getParcelableExtra(INTENT_DATA)
 
         txt_league_date.text = data.dateEvent
         txt_home_name.text = data.homeTeamName

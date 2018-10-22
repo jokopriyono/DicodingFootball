@@ -44,7 +44,7 @@ class LastLeagueHolder(view: View) : RecyclerView.ViewHolder(view) {
         homeScore.text = events.homeScore
         dateEvent.text = events.dateEvent
         cardLastLeague.setOnClickListener {
-            context.startActivity<DetailActivity>("data" to events)
+            context.startActivity<DetailActivity>(DetailActivity.INTENT_DATA to events)
         }
     }
 
