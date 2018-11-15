@@ -16,7 +16,7 @@
     <item
         android:id="@+id/menu_fav"
         android:enabled="true"
-        android:icon="@drawable/v_goal"
-        android:title="@string/next_match"
+        android:icon="@drawable/v_star_active"
+        android:title="@string/favorites"
         app:showAsAction="ifRoom" />
 </menu>

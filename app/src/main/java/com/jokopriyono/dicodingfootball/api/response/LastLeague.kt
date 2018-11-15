@@ -5,7 +5,10 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class LastLeague(
+data class LastLeague (
+        @SerializedName("idDatabase")
+        val idDB: String? = null,
+
         @SerializedName("idEvent")
         val idEvent: String? = null,
 

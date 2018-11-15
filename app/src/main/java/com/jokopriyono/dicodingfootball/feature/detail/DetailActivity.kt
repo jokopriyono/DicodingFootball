@@ -1,48 +1,147 @@
 package com.jokopriyono.dicodingfootball.feature.detail
 
-import android.support.v7.app.AppCompatActivity
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.R
+import com.jokopriyono.dicodingfootball.R.menu.menu_star_unactive
 import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import com.jokopriyono.dicodingfootball.api.response.Team
+import com.jokopriyono.dicodingfootball.data.FavoriteMatch
+import com.jokopriyono.dicodingfootball.data.database
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 
-class DetailActivity : AppCompatActivity(), DetailView {
+class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickListener {
+
     companion object {
         val INTENT_DATA: String = "data"
+        val INTENT_ID_DB: String = "iddb"
     }
+
+    private lateinit var lastLeague: LastLeague
+    private lateinit var idDatabase: String
     private lateinit var presenter: DetailPresenter
+
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        val data: LastLeague = intent.getParcelableExtra(INTENT_DATA)
+        lastLeague = intent.getParcelableExtra(INTENT_DATA)
 
-        txt_league_date.text = data.dateEvent
-        txt_home_name.text = data.homeTeamName
-        txt_away_name.text = data.awayTeamName
-        txt_home_score.text = data.homeScore
-        txt_away_score.text = data.awayScore
-        txt_yellow_card_home.text = data.homeYellowCards?.replace(";", "\n")
-        txt_red_card_home.text = data.homeRedCards?.replace(";", "\n")
-        txt_yellow_card_away.text = data.awayYellowCards?.replace(";", "\n")
-        txt_red_card_away.text = data.awayRedCards?.replace(";", "\n")
-        txt_home_goal.text = data.homeGoalDetails?.replace(";", "\n")
-        txt_away_goal.text = data.awayGoalDetails?.replace(";", "\n")
-        txt_home_id.text = data.idHomeTeam
-        txt_away_id.text = data.idAwayTeam
-        toolbar_detail.title = data.leagueName
+        txt_league_date.text = lastLeague.dateEvent
+        txt_home_name.text = lastLeague.homeTeamName
+        txt_away_name.text = lastLeague.awayTeamName
+        txt_home_score.text = lastLeague.homeScore
+        txt_away_score.text = lastLeague.awayScore
+        txt_yellow_card_home.text = lastLeague.homeYellowCards?.replace(";", "\n")
+        txt_red_card_home.text = lastLeague.homeRedCards?.replace(";", "\n")
+        txt_yellow_card_away.text = lastLeague.awayYellowCards?.replace(";", "\n")
+        txt_red_card_away.text = lastLeague.awayRedCards?.replace(";", "\n")
+        txt_home_goal.text = lastLeague.homeGoalDetails?.replace(";", "\n")
+        txt_away_goal.text = lastLeague.awayGoalDetails?.replace(";", "\n")
+        txt_home_id.text = lastLeague.idHomeTeam
+        txt_away_id.text = lastLeague.idAwayTeam
+        toolbar_detail.title = lastLeague.leagueName
 
+        if (intent.getStringExtra(INTENT_ID_DB) != null) {
+            idDatabase = intent.getStringExtra(INTENT_ID_DB)
+            favoriteState(idDatabase)
+        }
         val request = ApiRepository()
         val gson = Gson()
         presenter = DetailPresenter(this, request, gson)
-        presenter.getTwoTeams(data.homeTeamName, data.awayTeamName)
+        presenter.getTwoTeams(lastLeague.homeTeamName, lastLeague.awayTeamName)
 
         toolbar_detail.setNavigationOnClickListener { finish() }
+        toolbar_detail.inflateMenu(menu_star_unactive)
+        menuItem = toolbar_detail.menu
+        toolbar_detail.setOnMenuItemClickListener(this)
+        setFavorite()
+    }
+
+    override fun onMenuItemClick(menu: MenuItem): Boolean {
+        when (menu.itemId) {
+            R.id.menu_favorite -> {
+                if (isFavorite) removeFromFavorite(idDatabase) else addToFavorite()
+
+                isFavorite = !isFavorite
+                setFavorite()
+
+                return true
+            }
+
+            else -> return true
+        }
+    }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.v_star_active)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.v_star_unactive)
+    }
+
+    private fun addToFavorite() {
+        try {
+            database.use {
+                insert(FavoriteMatch.TABLE_FAV_MATCH,
+                        FavoriteMatch.idEvent to lastLeague.idEvent,
+                        FavoriteMatch.strEvent to lastLeague.eventName,
+                        FavoriteMatch.strFilename to lastLeague.eventFilename,
+                        FavoriteMatch.strLeague to lastLeague.leagueName,
+                        FavoriteMatch.strHomeTeam to lastLeague.homeTeamName,
+                        FavoriteMatch.strAwayTeam to lastLeague.awayTeamName,
+                        FavoriteMatch.intHomeScore to lastLeague.homeScore,
+                        FavoriteMatch.intAwayScore to lastLeague.awayScore,
+                        FavoriteMatch.strHomeGoalDetails to lastLeague.homeGoalDetails,
+                        FavoriteMatch.strAwayGoalDetails to lastLeague.awayGoalDetails,
+                        FavoriteMatch.strHomeRedCards to lastLeague.homeRedCards,
+                        FavoriteMatch.strAwayRedCards to lastLeague.awayRedCards,
+                        FavoriteMatch.strHomeYellowCards to lastLeague.homeYellowCards,
+                        FavoriteMatch.strAwayYellowCards to lastLeague.awayYellowCards,
+                        FavoriteMatch.dateEvent to lastLeague.dateEvent,
+                        FavoriteMatch.strDate to lastLeague.strDate,
+                        FavoriteMatch.idHomeTeam to lastLeague.idHomeTeam,
+                        FavoriteMatch.idAwayTeam to lastLeague.idAwayTeam)
+            }
+            Toast.makeText(this, "Added to Favorite", Toast.LENGTH_SHORT).show()
+        } catch (e: SQLiteConstraintException) {
+            Toast.makeText(this, "" + e.localizedMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun favoriteState(idDB: String) {
+        database.use {
+            val result = select(FavoriteMatch.TABLE_FAV_MATCH)
+                    .whereArgs("(ID_ = {id})", "id" to idDB.toLong())
+            val favorite = result.parseList(classParser<FavoriteMatch>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
+
+    private fun removeFromFavorite(idDB: String) {
+        try {
+            database.use {
+                delete(FavoriteMatch.TABLE_FAV_MATCH, "(ID_ = {${idDB.toLong()}})", null)
+            }
+            Toast.makeText(this, "Removed to Favorite", Toast.LENGTH_SHORT).show()
+        } catch (e: SQLiteConstraintException) {
+            Toast.makeText(this, "" + e.localizedMessage, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun showLoading() {
