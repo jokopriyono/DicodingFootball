@@ -27,11 +27,9 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
 
     companion object {
         val INTENT_DATA: String = "data"
-        val INTENT_ID_DB: String = "iddb"
     }
 
     private lateinit var lastLeague: LastLeague
-    private lateinit var idDatabase: String
     private lateinit var presenter: DetailPresenter
 
     private var menuItem: Menu? = null
@@ -57,9 +55,8 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
         txt_away_id.text = lastLeague.idAwayTeam
         toolbar_detail.title = lastLeague.leagueName
 
-        if (intent.getStringExtra(INTENT_ID_DB) != null) {
-            idDatabase = intent.getStringExtra(INTENT_ID_DB)
-            favoriteState(idDatabase)
+        lastLeague.idEvent?.let {
+            favoriteState(it)
         }
         val request = ApiRepository()
         val gson = Gson()
@@ -76,10 +73,12 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
     override fun onMenuItemClick(menu: MenuItem): Boolean {
         when (menu.itemId) {
             R.id.menu_favorite -> {
-                if (isFavorite) removeFromFavorite(idDatabase) else addToFavorite()
+                lastLeague.idEvent?.let {
+                    if (isFavorite) removeFromFavorite(it) else addToFavorite()
 
-                isFavorite = !isFavorite
-                setFavorite()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                }
 
                 return true
             }
@@ -124,19 +123,19 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
         }
     }
 
-    private fun favoriteState(idDB: String) {
+    private fun favoriteState(idEvent: String) {
         database.use {
             val result = select(FavoriteMatch.TABLE_FAV_MATCH)
-                    .whereArgs("(ID_ = {id})", "id" to idDB.toLong())
+                    .whereArgs("(idEvent = {id})", "id" to idEvent)
             val favorite = result.parseList(classParser<FavoriteMatch>())
             if (!favorite.isEmpty()) isFavorite = true
         }
     }
 
-    private fun removeFromFavorite(idDB: String) {
+    private fun removeFromFavorite(idEvent: String) {
         try {
             database.use {
-                delete(FavoriteMatch.TABLE_FAV_MATCH, "(ID_ = {${idDB.toLong()}})", null)
+                delete(FavoriteMatch.TABLE_FAV_MATCH, "(idEvent = ${idEvent.toLong()})", null)
             }
             Toast.makeText(this, "Removed to Favorite", Toast.LENGTH_SHORT).show()
         } catch (e: SQLiteConstraintException) {

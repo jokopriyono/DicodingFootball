@@ -105,7 +105,6 @@ class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         homeScore.text = favoriteMatch.homeScore
         dateEvent.text = favoriteMatch.dateEvent
         itemView.setOnClickListener { context.startActivity<DetailActivity>(
-                DetailActivity.INTENT_DATA to favoriteMatch,
-                DetailActivity.INTENT_ID_DB to favoriteMatch.idDB) }
+                DetailActivity.INTENT_DATA to favoriteMatch) }
     }
 }
