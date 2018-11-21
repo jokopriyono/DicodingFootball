@@ -85,7 +85,9 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun showLastLeague(events: List<LastLeague>) {
         lastLeague = LastLeagueAdapter(this, events)
-        recycler.adapter = lastLeague
+        runOnUiThread {
+            recycler.adapter = lastLeague
+        }
     }
 
     override fun showSpinner(allLeague: List<AllLeague>) {
