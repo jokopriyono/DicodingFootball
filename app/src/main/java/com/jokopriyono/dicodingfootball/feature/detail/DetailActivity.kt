@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
+import java.lang.Exception
 
 class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickListener {
 
@@ -117,8 +118,8 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
                         FavoriteMatch.idHomeTeam to lastLeague.idHomeTeam,
                         FavoriteMatch.idAwayTeam to lastLeague.idAwayTeam)
             }
-            Toast.makeText(this, "Added to Favorite", Toast.LENGTH_SHORT).show()
-        } catch (e: SQLiteConstraintException) {
+            Toast.makeText(this, getString(R.string.added_fav), Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
             Toast.makeText(this, "" + e.localizedMessage, Toast.LENGTH_SHORT).show()
         }
     }
@@ -137,7 +138,7 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
             database.use {
                 delete(FavoriteMatch.TABLE_FAV_MATCH, "(idEvent = ${idEvent.toLong()})", null)
             }
-            Toast.makeText(this, "Removed to Favorite", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.removed_fav), Toast.LENGTH_SHORT).show()
         } catch (e: SQLiteConstraintException) {
             Toast.makeText(this, "" + e.localizedMessage, Toast.LENGTH_SHORT).show()
         }

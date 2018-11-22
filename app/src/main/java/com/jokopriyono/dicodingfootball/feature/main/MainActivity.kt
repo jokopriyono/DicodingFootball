@@ -15,7 +15,6 @@ import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.response.AllLeague
 import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import com.jokopriyono.dicodingfootball.api.response.Team
-import com.jokopriyono.dicodingfootball.feature.detail.DetailActivity
 import com.jokopriyono.dicodingfootball.feature.favorite.FavoriteActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity

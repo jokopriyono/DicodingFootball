@@ -5,6 +5,8 @@
     <string name="next_match">Next Match</string>
     <string name="last_match">Last Match</string>
     <string name="vs">VS</string>
+    <string name="added_fav">Added to Favorite</string>
+    <string name="removed_fav">Removed to Favorite</string>
     <array name="league">
         <item>English Premier League</item>
         <item>English League Championship</item>
