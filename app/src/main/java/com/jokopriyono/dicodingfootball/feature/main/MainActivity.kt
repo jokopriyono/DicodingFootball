@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showLastLeague(events: List<LastLeague>) {
+        hideLoading()
         lastLeague = LastLeagueAdapter(this, events)
         runOnUiThread {
             recycler.adapter = lastLeague
@@ -90,6 +91,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showSpinner(allLeague: List<AllLeague>) {
+        hideLoading()
         val spinnerItems = ArrayList<String>()
         for (i: AllLeague in allLeague) {
             if (i.sportName == "Soccer") {

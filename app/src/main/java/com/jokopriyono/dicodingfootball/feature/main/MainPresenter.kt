@@ -17,7 +17,6 @@ class MainPresenter(val view: MainView, private val repo: ApiRepository, private
         view.showLoading()
         GlobalScope.launch(Dispatchers.Main) {
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getAllLeague()).await(), AllLeagueResponse::class.java)
-            view.hideLoading()
             view.showSpinner(data.leagues)
         }
     }
@@ -26,7 +25,6 @@ class MainPresenter(val view: MainView, private val repo: ApiRepository, private
         view.showLoading()
         GlobalScope.launch {
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getLastLeague(idLeague.toString())).await(), LastLeagueResponse::class.java)
-            view.hideLoading()
             view.showLastLeague(data.events)
         }
     }
@@ -35,7 +33,6 @@ class MainPresenter(val view: MainView, private val repo: ApiRepository, private
         view.showLoading()
         GlobalScope.launch {
             val data = gson.fromJson(repo.doRequest(TheSportDBApi.getNextLeague(idLeague.toString())).await(), LastLeagueResponse::class.java)
-            view.hideLoading()
             view.showLastLeague(data.events)
         }
     }
