@@ -27,10 +27,7 @@ class MainActivityTest {
     @Test
     fun testFavoritBehavior() {
         onView(withText(R.string.app_name)).check(matches(isDisplayed()))
-
-        onView(withId(progress)).check(matches(isDisplayed()))
         Thread.sleep(3000)
-        onView(withId(progress)).check(matches(not(isDisplayed())))
 
         onView(withId(spinner_league)).check(matches(isDisplayed()))
         onView(withId(spinner_league)).perform(click())
