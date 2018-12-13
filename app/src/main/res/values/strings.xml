@@ -7,6 +7,7 @@
     <string name="vs">VS</string>
     <string name="added_fav">Added to Favorite</string>
     <string name="removed_fav">Removed to Favorite</string>
+    <string name="search">Search</string>
     <array name="league">
         <item>English Premier League</item>
         <item>English League Championship</item>

@@ -12,8 +12,8 @@ class DetailPresenter(val view: DetailView, private val repo: ApiRepository, pri
     fun getTwoTeams(team1: String?, team2: String?) {
         view.showLoading()
         GlobalScope.launch(Dispatchers.Main) {
-            val dataHome = gson.fromJson(repo.doRequest(TheSportDBApi.getTeam(team1)).await(), TeamResponse::class.java)
-            val dataAway = gson.fromJson(repo.doRequest(TheSportDBApi.getTeam(team2)).await(), TeamResponse::class.java)
+            val dataHome = gson.fromJson(repo.doRequest(TheSportDBApi.searchTeam(team1)).await(), TeamResponse::class.java)
+            val dataAway = gson.fromJson(repo.doRequest(TheSportDBApi.searchTeam(team2)).await(), TeamResponse::class.java)
             view.hideLoading()
             view.showTeams(dataHome.teams[0], dataAway.teams[0])
         }

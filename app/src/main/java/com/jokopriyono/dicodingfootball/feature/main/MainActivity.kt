@@ -9,13 +9,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.R
-import com.jokopriyono.dicodingfootball.adapter.FootballAdapter
 import com.jokopriyono.dicodingfootball.adapter.LastLeagueAdapter
 import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.response.AllLeague
 import com.jokopriyono.dicodingfootball.api.response.LastLeague
-import com.jokopriyono.dicodingfootball.api.response.Team
 import com.jokopriyono.dicodingfootball.feature.favorite.FavoriteActivity
+import com.jokopriyono.dicodingfootball.feature.team.ListTeamActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -23,9 +22,7 @@ class MainActivity : AppCompatActivity(), MainView {
     private lateinit var lastLeague: LastLeagueAdapter
     private var position: Int = 0
     private var idLeagues: MutableList<Int> = mutableListOf()
-    private var teams: MutableList<Team> = mutableListOf()
     private lateinit var presenter: MainPresenter
-    private lateinit var adapter: FootballAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,8 +68,15 @@ class MainActivity : AppCompatActivity(), MainView {
                 position = 1
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.menu_fav -> {
+            R.id.menu_team -> {
                 if (position != 2) {
+                    startActivity<ListTeamActivity>()
+                }
+                position = 2
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_fav -> {
+                if (position != 3) {
                     startActivity<FavoriteActivity>()
                 }
                 position = 1
@@ -109,11 +113,5 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun hideLoading() {
         progress.visibility = View.INVISIBLE
-    }
-
-    override fun showTeams(data: List<Team>) {
-        teams.clear()
-        teams.addAll(data)
-        adapter.notifyDataSetChanged()
     }
 }

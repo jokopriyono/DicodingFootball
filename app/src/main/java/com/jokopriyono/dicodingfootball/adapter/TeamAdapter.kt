@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-class FootballAdapter(val context: Context, private val teams: List<Team>) :
+class TeamAdapter(val context: Context, private val teams: List<Team>) :
         RecyclerView.Adapter<FootballHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootballHolder {
         return FootballHolder(FootballUI().createView(AnkoContext.create(parent.context, parent)))

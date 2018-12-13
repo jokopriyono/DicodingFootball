@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".feature.detail.DetailActivity" />
-        <activity android:name=".feature.favorite.FavoriteActivity"/>
+        <activity android:name=".feature.favorite.FavoriteActivity" />
+        <activity android:name=".feature.team.ListTeamActivity"></activity>
     </application>
 
 </manifest>
