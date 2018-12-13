@@ -1,0 +1,3 @@
+package com.jokopriyono.dicodingfootball.feature.detailteam
+
+interface DetailTeamView

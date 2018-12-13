@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.jokopriyono.dicodingfootball.R
@@ -17,7 +16,7 @@ import com.jokopriyono.dicodingfootball.feature.detail.DetailActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-class FavoriteAdapter(val context: Context, val favoriteMatch: MutableList<LastLeague>)
+class FavoriteAdapter(private val context: Context, private val favoriteMatch: MutableList<LastLeague>)
     : RecyclerView.Adapter<FavoriteViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
