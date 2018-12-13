@@ -16,6 +16,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".feature.main.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.detail.DetailActivity" />
-        <activity android:name=".feature.favorite.FavoriteActivity" />
-        <activity android:name=".feature.team.ListTeamActivity"></activity>
+        <activity
+            android:name=".feature.detail.DetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.favorite.FavoriteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.team.ListTeamActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

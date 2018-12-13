@@ -23,4 +23,11 @@ class ListTeamPresenter(val view: ListTeamView, val repository: ApiRepository, v
             view.showData(data.teams)
         }
     }
+
+    fun searchTeams(teamName: String) {
+        GlobalScope.launch(Dispatchers.Main) {
+            val data = gson.fromJson(repository.doRequest(TheSportDBApi.searchTeam(teamName)).await(), TeamResponse::class.java)
+            view.showDataHideSpinner(data.teams)
+        }
+    }
 }
