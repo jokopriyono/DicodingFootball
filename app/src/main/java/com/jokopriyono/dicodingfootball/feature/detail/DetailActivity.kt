@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
-import java.lang.Exception
 
 class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickListener {
 
@@ -153,7 +152,7 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
     }
 
     override fun showTeams(dataHome: Team?, dataAway: Team?) {
-        Picasso.get().load(dataHome?.urlTeamLogo).into(img_home_team)
-        Picasso.get().load(dataAway?.urlTeamLogo).into(img_away_team)
+        Picasso.get().load(dataHome?.teamBadge).into(img_home_team)
+        Picasso.get().load(dataAway?.teamBadge).into(img_away_team)
     }
 }

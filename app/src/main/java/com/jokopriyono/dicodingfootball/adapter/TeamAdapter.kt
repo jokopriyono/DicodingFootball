@@ -37,7 +37,7 @@ class FootballHolder(view: View, private val context: Context) : RecyclerView.Vi
         Picasso.get().load(teams.teamBadge).into(teamBadge)
         teamName.text = teams.teamName
         cardView.setOnClickListener {
-            context.startActivity<DetailTeamActivity>()
+            context.startActivity<DetailTeamActivity>(DetailTeamActivity.INTENT_DATA to teams)
         }
     }
 

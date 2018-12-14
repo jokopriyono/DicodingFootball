@@ -87,9 +87,9 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showLastLeague(events: List<LastLeague>) {
-        hideLoading()
         lastLeague = LastLeagueAdapter(this, events)
         runOnUiThread {
+            hideLoading()
             recycler.adapter = lastLeague
         }
     }

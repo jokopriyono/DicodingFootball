@@ -16,5 +16,14 @@ data class Team(
         var teamBadge: String? = null,
 
         @SerializedName("strTeamLogo")
-        var urlTeamLogo: String? = null
+        var urlTeamLogo: String? = null,
+
+        @SerializedName("strStadium")
+        var strStadium: String? = null,
+
+        @SerializedName("strDescriptionEN")
+        var strDescriptionEN: String? = null,
+
+        @SerializedName("intFormedYear")
+        var year: String? = null
 ) : Parcelable
