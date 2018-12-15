@@ -21,7 +21,11 @@ class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, "Football.db
                 FavoriteTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 FavoriteTeam.TEAM_ID to TEXT + UNIQUE,
                 FavoriteTeam.TEAM_NAME to TEXT,
-                FavoriteTeam.TEAM_BADGE to TEXT)
+                FavoriteTeam.TEAM_BADGE to TEXT,
+                FavoriteTeam.TEAM_LOGO to TEXT,
+                FavoriteTeam.TEAM_DESC to TEXT,
+                FavoriteTeam.TEAM_STADIUM to TEXT,
+                FavoriteTeam.TEAM_YEAR to TEXT)
         db.createTable(FavoriteMatch.TABLE_FAV_MATCH, true,
                 FavoriteMatch.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 FavoriteMatch.idEvent to TEXT,
