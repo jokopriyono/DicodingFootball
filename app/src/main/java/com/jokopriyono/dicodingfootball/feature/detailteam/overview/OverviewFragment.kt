@@ -31,7 +31,7 @@ class OverviewFragment : Fragment(), AnkoComponent<Context> {
 
         val bundle: Bundle? = this.arguments
         bundle?.let {
-            team = it.getParcelable(DetailTeamActivity.INTENT_DATA)
+            team = it.getParcelable(DetailTeamActivity.INTENT_DATA_TEAM)
         }
     }
 

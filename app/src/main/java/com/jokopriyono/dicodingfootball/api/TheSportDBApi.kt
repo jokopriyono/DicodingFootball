@@ -52,4 +52,12 @@ object TheSportDBApi {
                 .build()
                 .toString()
     }
+
+    fun getPlayers(team: String): String {
+        return Uri.parse(getBaseURL()).buildUpon()
+                .appendPath("searchplayers.php")
+                .appendQueryParameter("t", team)
+                .build()
+                .toString()
+    }
 }

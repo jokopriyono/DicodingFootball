@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="player_face" type="id" />
+    <item name="player_name" type="id" />
     <item name="team_badge" type="id" />
     <item name="team_name" type="id" />
     <item name="away_name" type="id" />

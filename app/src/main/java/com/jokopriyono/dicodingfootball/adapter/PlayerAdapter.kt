@@ -9,41 +9,41 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.jokopriyono.dicodingfootball.R
-import com.jokopriyono.dicodingfootball.api.response.Team
-import com.jokopriyono.dicodingfootball.feature.detailteam.DetailTeamActivity
+import com.jokopriyono.dicodingfootball.api.response.Players
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-class TeamAdapter(private val context: Context, private val teams: List<Team>) :
-        RecyclerView.Adapter<FootballHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootballHolder {
-        return FootballHolder(FootballUI().createView(AnkoContext.create(parent.context, parent)), context)
+class PlayerAdapter(private val context: Context, private val players: List<Players>) : RecyclerView.Adapter<PlayerHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
+        return PlayerHolder(PlayerUI().createView(AnkoContext.create(parent.context, parent)), context)
     }
 
-    override fun onBindViewHolder(holder: FootballHolder, position: Int) {
-        holder.bindItem(teams[position])
+    override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
+        holder.bindItem(players[position])
     }
 
-    override fun getItemCount(): Int = teams.size
+    override fun getItemCount(): Int = players.size
 }
 
-class FootballHolder(view: View, private val context: Context) : RecyclerView.ViewHolder(view) {
-    private val teamBadge: ImageView = view.find(R.id.team_badge)
-    private val teamName: TextView = view.find(R.id.team_name)
+class PlayerHolder(view: View, private val context: Context) : RecyclerView.ViewHolder(view) {
+    private val imgPlayer: ImageView = view.find(R.id.player_face)
+    private val txtPlayer: TextView = view.find(R.id.player_name)
     private val cardView: CardView = view.find(R.id.cardview)
 
-    fun bindItem(teams: Team) {
-        Picasso.get().load(teams.teamBadge).into(teamBadge)
-        teamName.text = teams.teamName
-        cardView.setOnClickListener {
-            context.startActivity<DetailTeamActivity>(DetailTeamActivity.INTENT_DATA_TEAM to teams)
+    fun bindItem(players: Players) {
+        players.strCutout?.let {
+            Picasso.get().load(it).into(imgPlayer)
         }
+        txtPlayer.text = players.strPlayer
+        /*cardView.setOnClickListener {
+            context.startActivity<DetailTeamActivity>(DetailTeamActivity.INTENT_DATA_TEAM to players)
+        }*/
     }
 
 }
 
-class FootballUI : AnkoComponent<ViewGroup> {
+class PlayerUI : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         return with(ui) {
             cardView {
@@ -58,14 +58,14 @@ class FootballUI : AnkoComponent<ViewGroup> {
                     orientation = LinearLayout.HORIZONTAL
 
                     imageView {
-                        id = R.id.team_badge
+                        id = R.id.player_face
                     }.lparams {
                         height = dip(50)
                         width = dip(50)
                     }
 
                     textView {
-                        id = R.id.team_name
+                        id = R.id.player_name
                         textSize = 16f
                     }.lparams { margin = dip(16) }
                 }

@@ -1,3 +1,7 @@
 package com.jokopriyono.dicodingfootball.feature.detailteam
 
-interface DetailTeamView
+import com.jokopriyono.dicodingfootball.api.model.PlayersResponse
+
+interface DetailTeamView {
+    fun showData(players: PlayersResponse)
+}
