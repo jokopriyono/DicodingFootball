@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.jokopriyono.dicodingfootball.R
 import com.jokopriyono.dicodingfootball.api.response.Players
+import com.jokopriyono.dicodingfootball.feature.player.PlayerActivity
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
@@ -36,9 +37,9 @@ class PlayerHolder(view: View, private val context: Context) : RecyclerView.View
             Picasso.get().load(it).into(imgPlayer)
         }
         txtPlayer.text = players.strPlayer
-        /*cardView.setOnClickListener {
-            context.startActivity<DetailTeamActivity>(DetailTeamActivity.INTENT_DATA_TEAM to players)
-        }*/
+        cardView.setOnClickListener {
+            context.startActivity<PlayerActivity>(PlayerActivity.INTENT_DATA to players)
+        }
     }
 
 }

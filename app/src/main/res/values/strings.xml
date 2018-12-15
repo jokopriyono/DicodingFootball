@@ -8,6 +8,9 @@
     <string name="added_fav">Added to Favorite</string>
     <string name="removed_fav">Removed to Favorite</string>
     <string name="search">Search</string>
+    <string name="position">Position</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
     <array name="league">
         <item>English Premier League</item>
         <item>English League Championship</item>

@@ -12,6 +12,9 @@ data class Players(
         @SerializedName("strPlayer")
         var strPlayer: String,
 
+        @SerializedName("strDescriptionEN")
+        var strDescriptionEN: String,
+
         @SerializedName("strHeight")
         var strHeight: String? = null,
 
