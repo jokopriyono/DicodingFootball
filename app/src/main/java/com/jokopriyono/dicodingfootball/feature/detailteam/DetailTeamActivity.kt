@@ -1,7 +1,11 @@
 package com.jokopriyono.dicodingfootball.feature.detailteam
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View.GONE
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.R
@@ -14,7 +18,7 @@ import com.jokopriyono.dicodingfootball.feature.detailteam.players.PlayersFragme
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_team.*
 
-class DetailTeamActivity : AppCompatActivity(), DetailTeamView {
+class DetailTeamActivity : AppCompatActivity(), DetailTeamView, Toolbar.OnMenuItemClickListener {
     companion object {
         const val INTENT_DATA_TEAM = "data"
         const val INTENT_DATA_PLAYERS = "players"
@@ -22,17 +26,22 @@ class DetailTeamActivity : AppCompatActivity(), DetailTeamView {
 
     private lateinit var presenter: DetailTeamPresenter
     private lateinit var teams: Team
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_team)
         val apiRepository = ApiRepository()
         val gson = Gson()
-        presenter = DetailTeamPresenter(this, apiRepository, gson)
+        presenter = DetailTeamPresenter(this, applicationContext, apiRepository, gson)
 
         teams = intent.getParcelableExtra(INTENT_DATA_TEAM) as Team
         teams.teamName?.let {
             presenter.getPlayers(it)
+        }
+        teams.teamId?.let {
+            presenter.selectTeamSB(it)
         }
 
         Picasso.get().load(teams.teamBadge).into(img_team)
@@ -41,6 +50,38 @@ class DetailTeamActivity : AppCompatActivity(), DetailTeamView {
         txt_team_stadion.text = teams.strStadium
 
         toolbar.setNavigationOnClickListener { finish() }
+        toolbar.inflateMenu(R.menu.menu_star_unactive)
+        menuItem = toolbar.menu
+        toolbar.setOnMenuItemClickListener(this)
+        switchFavorite()
+    }
+
+    override fun setFavorite(favorite: Boolean) {
+        isFavorite = favorite
+    }
+
+    override fun onMenuItemClick(menu: MenuItem): Boolean {
+        return when (menu.itemId) {
+            R.id.menu_favorite -> {
+                teams.teamId?.let {
+                    if (isFavorite) presenter.removeTeamDB(it) else presenter.addTeamDB(teams)
+
+                    isFavorite = !isFavorite
+                    switchFavorite()
+                }
+
+                true
+            }
+
+            else -> true
+        }
+    }
+
+    private fun switchFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.v_star_active)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.v_star_unactive)
     }
 
     override fun showData(players: PlayersResponse) {
