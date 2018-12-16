@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.R
 import com.jokopriyono.dicodingfootball.R.menu.menu_star_unactive
@@ -22,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
+import org.jetbrains.anko.toast
 
 class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickListener {
 
@@ -117,9 +117,9 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
                         FavoriteMatch.idHomeTeam to lastLeague.idHomeTeam,
                         FavoriteMatch.idAwayTeam to lastLeague.idAwayTeam)
             }
-            Toast.makeText(this, getString(R.string.added_fav), Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.added_fav))
         } catch (e: Exception) {
-            Toast.makeText(this, "" + e.localizedMessage, Toast.LENGTH_SHORT).show()
+            toast(e.localizedMessage)
         }
     }
 
@@ -137,9 +137,9 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
             database.use {
                 delete(FavoriteMatch.TABLE_FAV_MATCH, "(idEvent = ${idEvent.toLong()})", null)
             }
-            Toast.makeText(this, getString(R.string.removed_fav), Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.removed_fav))
         } catch (e: SQLiteConstraintException) {
-            Toast.makeText(this, "" + e.localizedMessage, Toast.LENGTH_SHORT).show()
+            toast(e.localizedMessage)
         }
     }
 
