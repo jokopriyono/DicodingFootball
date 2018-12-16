@@ -1,6 +1,13 @@
 package com.jokopriyono.dicodingfootball.data
 
-data class FavoriteTeam(val id: Long?, val teamId: String?, val teamName: String?, val teamBadge: String?){
+data class FavoriteTeam(val id: Long?,
+                        val teamId: String?,
+                        val teamName: String?,
+                        val teamBadge: String?,
+                        val teamLogo: String?,
+                        val teamStadium: String?,
+                        val teamDesc: String?,
+                        val teamYear: String?) {
     companion object {
         const val TABLE_FAV: String = "T_FAVORITE"
         const val ID: String = "ID_"

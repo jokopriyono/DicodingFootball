@@ -1,13 +1,11 @@
 package com.jokopriyono.dicodingfootball.feature.detailteam
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.View.GONE
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.R
+import com.jokopriyono.dicodingfootball.adapter.ViewPagerAdapter
 import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.model.PlayersResponse
 import com.jokopriyono.dicodingfootball.api.response.Team
@@ -64,28 +62,6 @@ class DetailTeamActivity : AppCompatActivity(), DetailTeamView {
             loading.visibility = GONE
             view_pager.adapter = adapter
             tab_layout.setupWithViewPager(view_pager)
-        }
-    }
-
-    class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        private var fragments: MutableList<Fragment> = mutableListOf()
-        private var titles: MutableList<String> = mutableListOf()
-
-        fun addTab(fragment: Fragment, title: String) {
-            fragments.add(fragment)
-            titles.add(title)
-        }
-
-        override fun getItem(position: Int): Fragment {
-            return fragments[position]
-        }
-
-        override fun getCount(): Int {
-            return fragments.size
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return titles[position]
         }
     }
 }
