@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jokopriyono.dicodingfootball.R
 import com.jokopriyono.dicodingfootball.adapter.TeamAdapter
 import com.jokopriyono.dicodingfootball.api.model.TeamResponse
 import com.jokopriyono.dicodingfootball.feature.favorite.FavoriteActivity
@@ -49,6 +50,7 @@ class TeamFragment : Fragment(), AnkoComponent<Context> {
             padding = dip(16)
 
             recycler = recyclerView {
+                id = R.id.recycler_team
                 lparams(width = ViewGroup.LayoutParams.MATCH_PARENT, height = ViewGroup.LayoutParams.MATCH_PARENT)
             }
         }

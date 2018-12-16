@@ -5,15 +5,14 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
-import android.support.test.espresso.matcher.RootMatchers.withDecorView
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.jokopriyono.dicodingfootball.R.id.*
 import com.jokopriyono.dicodingfootball.feature.main.MainActivity
+import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.anything
-import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -37,15 +36,31 @@ class MainActivityTest {
         onView(withId(recycler)).check(matches(isDisplayed()))
         onView(withId(recycler)).perform(scrollToPosition<RecyclerView.ViewHolder>(3))
         onView(withId(recycler)).perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(3, click()))
-
         onView(withId(menu_favorite)).perform(click())
         Thread.sleep(1000)
-        onView(withText(R.string.added_fav)).inRoot(withDecorView(not(activityRule.activity.window.decorView))).check(matches(isDisplayed()))
-
         pressBack()
+
+        onView(withId(menu_team)).perform(click())
+        Thread.sleep(1000)
+        onView(withId(recycler_team)).check(matches(isDisplayed()))
+        onView(withId(recycler_team)).perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(menu_favorite)).perform(click())
+        Thread.sleep(1000)
+        pressBack()
+        Thread.sleep(1000)
+        pressBack()
+        pressBack()
+
         onView(withId(menu_fav)).perform(click())
 
-        onView(withId(recycler)).check(matches(isDisplayed()))
-        onView(withId(recycler)).perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(recycler_match)).check(matches(isDisplayed()))
+        onView(withId(recycler_match)).perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        Thread.sleep(1000)
+        pressBack()
+        onView(allOf(withText("TEAM"))).perform(click())
+        onView(withId(recycler_team)).check(matches(isDisplayed()))
+        onView(withId(recycler_team)).perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        Thread.sleep(1000)
+        pressBack()
     }
 }
