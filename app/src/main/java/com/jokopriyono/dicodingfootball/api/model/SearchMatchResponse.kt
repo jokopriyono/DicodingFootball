@@ -5,4 +5,4 @@ import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class LastLeagueResponse(val events: List<LastLeague>?) : Parcelable
+data class SearchMatchResponse(val event: List<LastLeague>?) : Parcelable

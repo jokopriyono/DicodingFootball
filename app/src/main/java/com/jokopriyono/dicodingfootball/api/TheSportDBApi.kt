@@ -60,4 +60,12 @@ object TheSportDBApi {
                 .build()
                 .toString()
     }
+
+    fun searchMatch(event: String): String {
+        return Uri.parse(getBaseURL()).buildUpon()
+                .appendPath("searchevents.php")
+                .appendQueryParameter("e", event)
+                .build()
+                .toString()
+    }
 }

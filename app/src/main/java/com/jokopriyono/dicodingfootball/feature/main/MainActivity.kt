@@ -93,25 +93,29 @@ class MainActivity : AppCompatActivity(), MainView {
         false
     }
 
-    override fun showLastLeague(events: List<LastLeague>) {
-        lastLeague = LastLeagueAdapter(this, events)
-        runOnUiThread {
-            hideLoading()
-            recycler.adapter = lastLeague
+    override fun showLastLeague(events: List<LastLeague>?) {
+        events?.let {
+            lastLeague = LastLeagueAdapter(this, events)
+            runOnUiThread {
+                hideLoading()
+                recycler.adapter = lastLeague
+            }
         }
     }
 
-    override fun showSpinner(allLeague: List<AllLeague>) {
+    override fun showSpinner(allLeague: List<AllLeague>?) {
         hideLoading()
-        val spinnerItems = ArrayList<String>()
-        for (i: AllLeague in allLeague) {
-            if (i.sportName == "Soccer") {
-                spinnerItems.add(i.leagueName)
-                idLeagues.add(i.idLeague.toInt())
+        allLeague?.let {
+            val spinnerItems = ArrayList<String>()
+            for (i: AllLeague in allLeague) {
+                if (i.sportName == "Soccer") {
+                    spinnerItems.add(i.leagueName)
+                    idLeagues.add(i.idLeague.toInt())
+                }
             }
+            val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
+            spinner_league.adapter = spinnerAdapter
         }
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
-        spinner_league.adapter = spinnerAdapter
     }
 
     override fun showLoading() {

@@ -22,11 +22,13 @@ class MatchFragment : Fragment(), AnkoComponent<Context> {
         val view = createView(AnkoContext.create(requireContext()))
 
         lastLeagueResponse?.let {
-            if (it.events.isNotEmpty()) {
-                context?.let { cntx ->
-                    recycler.layoutManager = LinearLayoutManager(cntx)
-                    val adapter = LastLeagueAdapter(cntx, it.events)
-                    recycler.adapter = adapter
+            it.events?.let { lastLeague ->
+                if (lastLeague.isNotEmpty()) {
+                    context?.let { cntx ->
+                        recycler.layoutManager = LinearLayoutManager(cntx)
+                        val adapter = LastLeagueAdapter(cntx, it.events)
+                        recycler.adapter = adapter
+                    }
                 }
             }
         }
