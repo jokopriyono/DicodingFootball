@@ -14,6 +14,7 @@ import com.jokopriyono.dicodingfootball.api.ApiRepository
 import com.jokopriyono.dicodingfootball.api.response.AllLeague
 import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import com.jokopriyono.dicodingfootball.feature.favorite.FavoriteActivity
+import com.jokopriyono.dicodingfootball.feature.searchmatch.SearchMatchActivity
 import com.jokopriyono.dicodingfootball.feature.team.ListTeamActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
@@ -44,6 +45,12 @@ class MainActivity : AppCompatActivity(), MainView {
                 else
                     presenter.getNextLeague(idLeagues[spinner_league.selectedItemPosition])
             }
+        }
+        toolbar.setNavigationOnClickListener { finish() }
+        toolbar.inflateMenu(R.menu.menu_search)
+        toolbar.setOnMenuItemClickListener {
+            startActivity<SearchMatchActivity>()
+            return@setOnMenuItemClickListener true
         }
         bottom_navigation.setOnNavigationItemSelectedListener(listener)
     }
