@@ -21,6 +21,9 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), MainView {
+    companion object {
+        private const val TYPE = "Soccer"
+    }
     private lateinit var lastLeague: LastLeagueAdapter
     private var position: Int = 0
     private var idLeagues: MutableList<Int> = mutableListOf()
@@ -111,7 +114,7 @@ class MainActivity : AppCompatActivity(), MainView {
         allLeague?.let {
             val spinnerItems = ArrayList<String>()
             for (i: AllLeague in allLeague) {
-                if (i.sportName == "Soccer") {
+                if (i.sportName == TYPE) {
                     spinnerItems.add(i.leagueName)
                     idLeagues.add(i.idLeague.toInt())
                 }
