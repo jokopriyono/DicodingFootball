@@ -24,7 +24,7 @@ class TeamFragment : Fragment(), AnkoComponent<Context> {
 
         teamResponse?.let {
             if (it.teams.isNotEmpty()) {
-                context?.let { cntx ->
+                activity?.let { cntx ->
                     recycler.layoutManager = LinearLayoutManager(cntx)
                     val adapter = TeamAdapter(cntx, it.teams)
                     recycler.adapter = adapter

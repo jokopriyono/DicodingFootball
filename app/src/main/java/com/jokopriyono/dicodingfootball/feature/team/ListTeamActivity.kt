@@ -80,7 +80,7 @@ class ListTeamActivity : AppCompatActivity(), ListTeamView,
 
     override fun showData(teams: List<Team>) {
         loading.visibility = GONE
-        val adapter = TeamAdapter(applicationContext, teams)
+        val adapter = TeamAdapter(this, teams)
         recycler_team.adapter = adapter
         recycler_team.visibility = VISIBLE
     }
