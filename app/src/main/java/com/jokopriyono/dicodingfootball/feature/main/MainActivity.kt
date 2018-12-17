@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), MainView {
     companion object {
         private const val TYPE = "Soccer"
     }
+
     private lateinit var lastLeague: LastLeagueAdapter
     private var position: Int = 0
     private var idLeagues: MutableList<Int> = mutableListOf()
@@ -83,14 +84,12 @@ class MainActivity : AppCompatActivity(), MainView {
                 if (position != 2) {
                     startActivity<ListTeamActivity>()
                 }
-                position = 2
                 return@OnNavigationItemSelectedListener true
             }
             R.id.menu_fav -> {
                 if (position != 3) {
                     startActivity<FavoriteActivity>()
                 }
-                position = 1
                 return@OnNavigationItemSelectedListener true
             }
         }
