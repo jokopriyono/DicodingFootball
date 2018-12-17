@@ -18,7 +18,7 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
         const val BUNDLE_TEAM = "teams"
     }
 
-    lateinit var presenter: FavoritePresenter
+    private lateinit var presenter: FavoritePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

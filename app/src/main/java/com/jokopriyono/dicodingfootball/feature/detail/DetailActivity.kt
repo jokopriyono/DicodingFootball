@@ -26,7 +26,7 @@ import org.jetbrains.anko.toast
 class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickListener {
 
     companion object {
-        val INTENT_DATA: String = "data"
+        const val INTENT_DATA: String = "data"
     }
 
     private lateinit var lastLeague: LastLeague
@@ -71,7 +71,7 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
     }
 
     override fun onMenuItemClick(menu: MenuItem): Boolean {
-        when (menu.itemId) {
+        return when (menu.itemId) {
             R.id.menu_favorite -> {
                 lastLeague.idEvent?.let {
                     if (isFavorite) removeFromFavorite(it) else addToFavorite()
@@ -80,10 +80,10 @@ class DetailActivity : AppCompatActivity(), DetailView, Toolbar.OnMenuItemClickL
                     setFavorite()
                 }
 
-                return true
+                true
             }
 
-            else -> return true
+            else -> true
         }
     }
 
