@@ -18,6 +18,7 @@ import com.jokopriyono.dicodingfootball.feature.searchmatch.SearchMatchActivity
 import com.jokopriyono.dicodingfootball.feature.team.ListTeamActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), MainView {
     private lateinit var lastLeague: LastLeagueAdapter
@@ -94,11 +95,13 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showLastLeague(events: List<LastLeague>?) {
-        events?.let {
-            lastLeague = LastLeagueAdapter(this, events)
-            runOnUiThread {
+        runOnUiThread {
+            events?.let {
+                lastLeague = LastLeagueAdapter(this, events)
                 hideLoading()
                 recycler.adapter = lastLeague
+            }.run {
+                toast("Data not found for this league")
             }
         }
     }
