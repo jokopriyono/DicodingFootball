@@ -41,7 +41,8 @@ class FavoritePresenter(val view: FavoriteView) {
                                 data.dateEvent,
                                 data.strDate,
                                 data.idHomeTeam,
-                                data.idAwayTeam)
+                                data.idAwayTeam,
+                                "Soccer")
                         lastLeagues.add(lastLeague)
                     }
 

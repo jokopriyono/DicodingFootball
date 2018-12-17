@@ -17,7 +17,8 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView, SearchView.OnQ
     companion object {
         private const val TYPE = "Soccer"
     }
-    lateinit var presenter: SearchMatchPresenter
+
+    private lateinit var presenter: SearchMatchPresenter
     private var handler: Handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView, SearchView.OnQ
             events?.let {
                 val soccer: MutableList<LastLeague> = mutableListOf()
                 for (event: LastLeague in it) {
-                    if (event.leagueName == TYPE) soccer.add(event)
+                    if (event.strSport == TYPE) soccer.add(event)
                 }
 
                 val adapter = LastLeagueAdapter(applicationContext, soccer)

@@ -61,5 +61,8 @@ data class LastLeague (
         val idHomeTeam: String? = null,
 
         @SerializedName("idAwayTeam")
-        val idAwayTeam: String? = null
+        val idAwayTeam: String? = null,
+
+        @SerializedName("strSport")
+        val strSport: String
 ) : Parcelable
