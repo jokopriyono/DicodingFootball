@@ -14,6 +14,9 @@ import com.jokopriyono.dicodingfootball.api.response.LastLeague
 import kotlinx.android.synthetic.main.activity_search_match.*
 
 class SearchMatchActivity : AppCompatActivity(), SearchMatchView, SearchView.OnQueryTextListener {
+    companion object {
+        private const val TYPE = "Soccer"
+    }
     lateinit var presenter: SearchMatchPresenter
     private var handler: Handler = Handler()
 
@@ -34,7 +37,12 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView, SearchView.OnQ
         runOnUiThread {
             loading.visibility = View.GONE
             events?.let {
-                val adapter = LastLeagueAdapter(applicationContext, it)
+                val soccer: MutableList<LastLeague> = mutableListOf()
+                for (event: LastLeague in it) {
+                    if (event.leagueName == TYPE) soccer.add(event)
+                }
+
+                val adapter = LastLeagueAdapter(applicationContext, soccer)
                 recycler_match.adapter = adapter
                 recycler_match.visibility = View.VISIBLE
             }
