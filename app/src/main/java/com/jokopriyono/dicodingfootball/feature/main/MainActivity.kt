@@ -99,11 +99,11 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun showLastLeague(events: List<LastLeague>?) {
         runOnUiThread {
-            events?.let {
+            if (events != null) {
                 lastLeague = LastLeagueAdapter(this, events)
                 hideLoading()
                 recycler.adapter = lastLeague
-            }.run {
+            } else {
                 toast("Data not found for this league")
             }
         }

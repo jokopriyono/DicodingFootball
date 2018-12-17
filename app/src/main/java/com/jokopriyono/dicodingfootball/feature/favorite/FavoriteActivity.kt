@@ -25,9 +25,13 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
         setContentView(R.layout.activity_favorite)
 
         presenter = FavoritePresenter(this)
-        presenter.loadData(applicationContext)
 
         toolbar.setNavigationOnClickListener { finish() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.loadData(applicationContext)
     }
 
     override fun showAllFavorite(lastLeagues: MutableList<LastLeague>, teams: MutableList<Team>) {
