@@ -1,13 +1,13 @@
 package com.jokopriyono.dicodingfootball.adapter
 
 import android.content.Context
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import com.jokopriyono.dicodingfootball.R
 import com.jokopriyono.dicodingfootball.api.response.Team
 import com.jokopriyono.dicodingfootball.feature.detailteam.DetailTeamActivity

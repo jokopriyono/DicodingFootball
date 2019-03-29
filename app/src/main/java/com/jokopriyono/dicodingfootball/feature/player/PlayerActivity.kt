@@ -1,7 +1,7 @@
 package com.jokopriyono.dicodingfootball.feature.player
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.jokopriyono.dicodingfootball.R
 import com.jokopriyono.dicodingfootball.api.response.Players
 import com.squareup.picasso.Picasso

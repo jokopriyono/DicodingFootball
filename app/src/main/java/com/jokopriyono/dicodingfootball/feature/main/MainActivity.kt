@@ -1,12 +1,12 @@
 package com.jokopriyono.dicodingfootball.feature.main
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.jokopriyono.dicodingfootball.R
 import com.jokopriyono.dicodingfootball.adapter.LastLeagueAdapter
